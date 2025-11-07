@@ -3,20 +3,15 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from exp8_b import load_data, filter_data, get_summary_stats
 
-# Page config
 st.set_page_config(page_title="Screen Time vs Mental Wellness Survey Data Analysis", layout="wide")
 
-# Seaborn style
 sns.set(style="whitegrid", palette="muted", font_scale=1.1)
 
-# Title
 st.title("Screen Time vs Mental Wellness Survey Data Analysis")
 st.markdown("### Visual Analysis of Stress, Sleep, and Screen Habits")
 
-# --- Load and Filter Data ---
 df = load_data()
 
-# Sidebar filters
 st.sidebar.header("🔍 Visualization Filters")
 gender_options = ["All"] + list(df["gender"].dropna().unique())
 work_mode_options = ["All"] + list(df["work_mode"].dropna().unique())
@@ -24,21 +19,17 @@ work_mode_options = ["All"] + list(df["work_mode"].dropna().unique())
 selected_gender = st.sidebar.selectbox("Select Gender", gender_options)
 selected_work_mode = st.sidebar.selectbox("Select Work Mode", work_mode_options)
 
-# Filter dataset
 filtered_df = filter_data(df, selected_gender, selected_work_mode)
 
-# Optional stats summary
 stats = get_summary_stats(filtered_df)
 st.sidebar.markdown("### 📊 Summary Stats")
 for key, value in stats.items():
     st.sidebar.write(f"**{key}:** {value:.2f}")
 
-# Show raw data
 if st.sidebar.checkbox("Show Raw Data", False):
     st.subheader("📋 Filtered Dataset Preview")
     st.dataframe(filtered_df, use_container_width=True, height=400)
 
-# --- VISUALIZATIONS ---
 # Line Plot
 st.subheader("Stress Level vs Age")
 fig1 = plt.figure(figsize=(8,5))
