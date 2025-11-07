@@ -1,7 +1,7 @@
 import streamlit as st
 import matplotlib.pyplot as plt
 import seaborn as sns
-from exp8b_backend import load_data, filter_data, get_summary_stats
+from exp8_b import load_data, filter_data, get_summary_stats
 
 # Page config
 st.set_page_config(page_title="Screen Time vs Mental Wellness Survey Data Analysis", layout="wide")
