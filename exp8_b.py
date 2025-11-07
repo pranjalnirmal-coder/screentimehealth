@@ -1,10 +1,8 @@
 import pandas as pd
 
-# Load dataset
 def load_data():
     return pd.read_csv("ScreevsmentalH.csv")
 
-# Apply filters for gender and work mode
 def filter_data(df, gender="All", work_mode="All"):
     filtered_df = df.copy()
     if gender != "All":
@@ -13,7 +11,7 @@ def filter_data(df, gender="All", work_mode="All"):
         filtered_df = filtered_df[filtered_df["work_mode"] == work_mode]
     return filtered_df
 
-# Optional: Add summary stats function
+
 def get_summary_stats(df):
     return {
         "Average Stress": df["stress_level_0_10"].mean(),
